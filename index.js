@@ -38,11 +38,11 @@ function togglePopup() {
 for(let i = 0; i < likeButtons.length; ++i) {
     // console.log("цикл for был вызван");
     function toggleLikeButton() {
-        let dislike = likeButtons[i].querySelector(".like_disabled");
-        let like = likeButtons[i].querySelector(".like_enabled");
+        let dislike = likeButtons[i].querySelector(".element__like-button_disabled");
+        let like = likeButtons[i].querySelector(".element__like-button_enabled");
     
-        dislike.classList.toggle("like_toggle");
-        like.classList.toggle("like_toggle");
+        dislike.classList.toggle("element__like-button_toggle");
+        like.classList.toggle("element__like-button_toggle");
         
     }
 
