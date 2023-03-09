@@ -1,0 +1,28 @@
+.profile__add-button {
+    margin: 0 0 0 auto; /*чтобы отступ слева выстраивал окружающее пространство вокруг элемента*/
+    display: flex;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    padding: 14px 64px;
+    border: 2px solid #FFFFFF;
+}
+
+@media screen and (max-width: 627px) {
+    .profile__add-button {
+       padding: 17px 132px;
+    }
+}
+
+@media screen and (max-width: 627px) {
+    .profile__add-button {
+        display: block;
+        margin: 0;
+        width: 282px;
+        height: auto;
+    }
+}
+
+.profile__add-button:hover {
+    opacity: 0.7;
+}

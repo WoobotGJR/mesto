@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <link rel="stylesheet" href="./pages/index.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mesto</title>
+    </head>
+    <body class="body">
+        <div class="page">
+            <header class="header">
+                <img class="header__logo" src="./images/header-logo.png" alt="Логотип сайта">
+            </header>
+            <main class="main">
+                <section class="profile">
+                    <img class="profile__avatar" src="./images/profile-image.jpg" alt="Фото профиля">
+                    <div class="profile__info-grid">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <p class="profile__activity">Исследователь океана</p>
+                        <button class="profile__edit-button"><img src="./images/EditButton.svg" alt="Изменить информацию профиля"></button>
+                    </div>
+                    <button class="profile__add-button"><img src="./images/Vector.svg" alt="Добавить информацию"></button>
+                </section>
+                <section class="elements">
+                    <div class="element">
+                        <img class="element__image" src="./images/Karachaevsk.png" alt="Карачаевск">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Карачаевск</h2>
+                            <button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <img class="element__image" src="./images/ElbrusMountain.png" alt="Гора Эльбрус">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Гора Эльбрус</h2>
+							<button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <img class="element__image" src="./images/Dombai.png" alt="Домбай">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Домбай</h2>
+							<button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <img class="element__image" src="./images/ElbrusMountain.png" alt="Гора Эльбрус">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Гора Эльбрус</h2>
+							<button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <img class="element__image" src="./images/Dombai.png" alt="Домбай">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Домбай</h2>
+							<button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                    <div class="element">
+                        <img class="element__image" src="./images/Karachaevo-Cherkessia.png" alt="Карачаево-Черкессия">
+                        <div class="element__bottom-panel">
+                            <h2 class="element__subtitle">Карачаево-Черкессия</h2>
+							<button class="element__like-button">
+								<img class="like_disabled" src="./images/LikeButton.svg" alt="Кнопка 'нравится'"><img class="like_enabled like_toggle" src="./images/LikeButtonActive.svg" alt="Кнопка 'нравится'">
+							</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+            </footer>
+            <div class="popup">
+				<div class="popup__window">
+					<form class="popup__container">
+						<p class="popup__title">Редактировать профиль</p>
+						<input class="popup__input popup__input_name" type="text" placeholder="Введите своё имя...">
+						<input class="popup__input popup__input_activity" type="text" placeholder="Введите свою должность...">
+						<button class="popup__submit-button">
+                            Сохранить
+                        </button>
+                    </form>
+                    <button class="popup__close-button"><img class="popup__close-button-image" src="./images/CloseIcon.svg" alt="Кнопка 'закрыть'"></button>
+				</div>
+            </div>
+        </div>
+		<script src="./index.js"></script>
+    </body>
+</html>
