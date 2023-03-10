@@ -3,7 +3,7 @@
     row-gap: 8px;
     column-gap: 18px;
     /* grid-template-columns: minmax(294px, 1fr) 24px; */
-    /* max-width: 336px; */
+    max-width: 560px;
     margin: 0;
 }
 

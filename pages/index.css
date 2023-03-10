@@ -24,7 +24,6 @@
 @import url(../blocks/element/__bottom-panel/element__bottom-panel.css);
 @import url(../blocks/element/__subtitle/element__subtitle.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
-@import url(../blocks/element/__like-button/_disabled/element__like-button_disabled.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 
 
