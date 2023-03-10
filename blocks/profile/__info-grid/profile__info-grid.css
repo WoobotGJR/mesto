@@ -3,11 +3,23 @@
     row-gap: 8px;
     column-gap: 18px;
     /* grid-template-columns: minmax(294px, 1fr) 24px; */
-    max-width: 560px;
+    max-width: 460px;
     margin: 0;
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 1180px) {
+    .profile__info-grid {
+        max-width: 360px;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    .profile__info-grid {
+        max-width: 260px;
+    }
+}
+
+@media screen and (max-width: 670px) {
     .profile__info-grid {
         column-gap: 10px;
         margin-bottom: 36px;
