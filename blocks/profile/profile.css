@@ -7,7 +7,7 @@
 	font-family: "Inter", "Arial", "Helvetica", sans-serif;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1024px) {
     .profile {
         max-width: calc(100% - 200px);
     }
@@ -23,5 +23,6 @@
     .profile {
         max-width: calc(100% - 38px);
         flex-direction: column;
+        margin-bottom: 36px;
     }
 }

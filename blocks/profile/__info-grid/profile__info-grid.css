@@ -13,7 +13,13 @@
     }
 }
 
-@media screen and (max-width: 885px) {
+@media screen and (max-width: 1080px) {
+    .profile__info-grid {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 852px) {
     .profile__info-grid {
         max-width: 260px;
     }

@@ -4,7 +4,7 @@
     font-family: "Inter", "Arial", "Helvetica", sans-serif;
 }
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1024px) {
     .footer {
         max-width: calc(100% - 200px);
     }
@@ -16,7 +16,7 @@
     }
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 670px) {
     .footer {
         max-width: calc(100% - 38px);
     }
