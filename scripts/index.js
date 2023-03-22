@@ -6,7 +6,7 @@ const imagePopup = document.querySelector(".image-popup");
 const closeButton = document.querySelectorAll(".popup__close-button");
 const likeButtons = document.querySelectorAll(".element__like-button");
 const formElement = document.querySelectorAll(".popup__container");
-const nameInput = formElement[0].querySelector(".popup__input_type_name-text"); //мне не нравится обращение к элементам по индексу
+const nameInput = formElement[0].querySelector(".popup__input_type_name-text"); //обращения по индексу, возможно стоит исправить
 const jobInput = formElement[0].querySelector(".popup__input_activity-text");
 const profileName = document.querySelector(".profile__name");
 const placeNameInput = formElement[1].querySelector(".popup__input_type_place-name-text");
@@ -17,7 +17,7 @@ const cardElements = document.querySelector(".elements");
 const initialCards = [
     {
       name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' // replace with images from PC
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
       name: 'Челябинская область',
