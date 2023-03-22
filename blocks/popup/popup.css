@@ -9,5 +9,9 @@
     margin: 0;
     padding: 0;
     font-family: "Inter", "Arial", "Helvetica", sans-serif;
-    display: none;
+    visibility: hidden; /*ниже, свойства, овтечающие за плавность открытия и закрытия модальных окон*/
+    opacity: 0;
+    transition-property: opacity, visibility;
+    transition-duration: 0.35s, 0.35s;
+    transition-delay: 0s, 0s;
 }
