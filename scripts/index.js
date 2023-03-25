@@ -17,6 +17,7 @@ const submitButton = document.querySelector(".popup__submit-button");
 const cardElements = document.querySelector(".elements");
 const imagePopupImage = document.querySelector(".image-popup__image");
 const imagePopupTextContent = document.querySelector(".image-popup__subtitle");
+const popupImage = document.querySelector(".image-popup"); // Изображение попапов найдено.
 const initialCards = [
     {
       name: 'Архыз',
@@ -44,10 +45,14 @@ const initialCards = [
     }
   ];
 
-function togglePopup(popup) {
+function openPopup(popup) {
 
-  popup.classList.toggle("popup_opened");
+  popup.classList.add("popup_opened"); // Добавлены функции открытия и (ниже) закрытия попапов.
 
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
 function createCardElement(link, name) {
@@ -79,7 +84,7 @@ function createCardElement(link, name) {
       imagePopupImage.alt = cardImage.textContent; // атрибут alt инициализируется названием картинки
       imagePopupTextContent .textContent = cardName.textContent;
 
-      togglePopup(document.querySelector(".image-popup"));
+      openPopup(popupImage);
 
     })
 
@@ -95,7 +100,7 @@ for (let i = 0; i < initialCards.length; i++) {
 
 editButton.addEventListener("click", () => {
 
-  togglePopup(editPopup);
+  openPopup(editPopup);
 
   nameInput.value = profileName.textContent; //при открытии попапа инициализируем формы теми, которые введены в профиле
   jobInput.value = profileActivity.textContent; //при открытии попапа инициализируем формы теми, которые введены в профиле
@@ -104,7 +109,7 @@ editButton.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
 
-  togglePopup(addPopup);
+  openPopup(addPopup);
 
 });
 
@@ -126,7 +131,7 @@ for(let i = 0; i < closeButtons.length; i++) {
 
     const popup = event.target.closest(".popup")
     
-    togglePopup(popup);
+    closePopup(popup);
 
   });
 
@@ -140,7 +145,7 @@ editFormElement.addEventListener('submit', (event) => {
     profileActivity.textContent = jobInput.value;
     // console.log("Значения сохранены");
 
-    togglePopup(editPopup);
+    closePopup(editPopup);
 
 }); 
 
@@ -150,8 +155,15 @@ addFormElement.addEventListener("submit", (event) => {
 
   cardElements.prepend(createCardElement(imageLinkInput.value, placeNameInput.value));
 
-  togglePopup(addPopup);
+  closePopup(addPopup);
   
   event.target.reset();
   
 })
+
+// document.querySelectorAll(".popup").forEach(element => { // функция для закрытия попапов, при клике в любой области, не являющейся модальным окном
+//   element.addEventListener("click", (event) => {
+//     // console.log(event.target.closest(".popup"));
+//     closePopup(event.target.closest(".popup"));
+//   })
+// });
