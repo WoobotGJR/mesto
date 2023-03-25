@@ -7,11 +7,11 @@ const closeButtons = document.querySelectorAll(".popup__close-button");
 const likeButtons = document.querySelectorAll(".element__like-button");
 const addFormElement = document.querySelector(".popup__container_type_add");
 const editFormElement = document.querySelector(".popup__container_type_edit");
-const nameInput = editFormElement.querySelector(".popup__input_type_name-text"); //обращения по индексу, возможно стоит исправить
-const jobInput = editFormElement.querySelector(".popup__input_activity-text"); //обращения по индексу, возможно стоит исправить
+const nameInput = editFormElement.querySelector(".popup__input_type_name-text");
+const jobInput = editFormElement.querySelector(".popup__input_activity-text"); 
 const profileName = document.querySelector(".profile__name");
-const placeNameInput = addFormElement.querySelector(".popup__input_type_place-name-text"); //обращения по индексу, возможно стоит исправить
-const imageLinkInput = addFormElement.querySelector(".popup__input_image-link-text") //обращения по индексу, возможно стоит исправить
+const placeNameInput = addFormElement.querySelector(".popup__input_type_place-name-text"); 
+const imageLinkInput = addFormElement.querySelector(".popup__input_image-link-text") 
 const profileActivity = document.querySelector(".profile__activity");
 const submitButton = document.querySelector(".popup__submit-button");
 const cardElements = document.querySelector(".elements");
@@ -46,9 +46,7 @@ const initialCards = [
   ];
 
 function openPopup(popup) {
-
   popup.classList.add("popup_opened"); // Добавлены функции открытия и (ниже) закрытия попапов.
-
 }
 
 function closePopup(popup) {
