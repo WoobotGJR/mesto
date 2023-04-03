@@ -13,11 +13,11 @@ const profileName = document.querySelector(".profile__name");
 const placeNameInput = addFormElement.querySelector(".popup__input_type_place-name-text"); 
 const imageLinkInput = addFormElement.querySelector(".popup__input_image-link-text") 
 const profileActivity = document.querySelector(".profile__activity");
-const submitButton = document.querySelector(".popup__submit-button");
 const cardElements = document.querySelector(".elements");
 const imagePopupImage = document.querySelector(".image-popup__image");
 const imagePopupTextContent = document.querySelector(".image-popup__subtitle");
 const popupImage = document.querySelector(".image-popup"); // Изображение попапов найдено.
+const popups = document.querySelectorAll(".popup");
 const initialCards = [
     {
       name: 'Архыз',
@@ -86,6 +86,13 @@ function createCardElement(link, name) {
 
     })
 
+    // cardElement.querySelector(".element__image").addEventListener("keydown", (event) => {
+    //   console.log(event.key)
+    //   if(event.key === "Escape") {
+    //     closePopup(imagePopup);
+    //   }
+    // })
+
     return cardElement
 
 }
@@ -110,6 +117,13 @@ addButton.addEventListener("click", () => {
   openPopup(addPopup);
 
 });
+
+// document.querySelector(".element__image").addEventListener("keydown", (event) => {
+//   if(event.key === "Escape") {
+//     console.log("a")
+//     closePopup(imagePopup);
+//   }
+// })
 
 // находим все крестики проекта по универсальному селектору
 // const closeButtons = document.querySelectorAll('.popup__close');
@@ -159,9 +173,23 @@ addFormElement.addEventListener("submit", (event) => {
   
 })
 
-// document.querySelectorAll(".popup").forEach(element => { // функция для закрытия попапов, при клике в любой области, не являющейся модальным окном
-//   element.addEventListener("click", (event) => {
-//     // console.log(event.target.closest(".popup"));
-//     closePopup(event.target.closest(".popup"));
-//   })
-// });
+popups.forEach(element => { // функция для закрытия попапов, при клике в любой области, не являющейся модальным окном
+  element.addEventListener("click", (event) => {
+    // console.log(event.currentTarget)
+    // console.log(event.target)
+    if(event.target === event.currentTarget) {
+      closePopup(event.target.closest(".popup"));
+    }
+  })
+});
+
+document.addEventListener("keydown", (event) => {
+
+  if(event.key === "Escape") {
+    popups.forEach((element) => {
+      if(element.classList.contains("popup_opened")) {
+        closePopup(element);
+      }
+    })
+  }
+})

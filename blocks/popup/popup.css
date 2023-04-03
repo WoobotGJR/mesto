@@ -14,4 +14,5 @@
     transition-property: opacity, visibility;
     transition-duration: 0.35s, 0.35s;
     transition-delay: 0s, 0s;
+    z-index: 1;
 }

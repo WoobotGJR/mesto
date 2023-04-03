@@ -12,7 +12,20 @@
 }
 
 .popup__input:focus {
-    outline: 2px solid royalblue;
+    outline: 1px solid royalblue;
+}
+
+.popup__input:invalid:focus {
+    outline: 1px red solid;
+    border-bottom: 1px transparent solid;
+}
+
+.popup__input:valid:focus {
+    outline: 1px solid royalblue;
+}
+
+.popup__input:invalid {
+    border-bottom: 1px solid #FF0000;
 }
 
 .popup__input:last-of-type {
