@@ -4,7 +4,6 @@ const editPopup = document.querySelector(".edit-popup");
 const addPopup = document.querySelector(".add-popup");
 const imagePopup = document.querySelector(".image-popup");
 const closeButtons = document.querySelectorAll(".popup__close-button");
-const likeButtons = document.querySelectorAll(".element__like-button");
 const addFormElement = document.querySelector(".popup__container_type_add");
 const editFormElement = document.querySelector(".popup__container_type_edit");
 const nameInput = editFormElement.querySelector(".popup__input_type_name-text");
@@ -47,14 +46,25 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add("popup_opened"); // Добавлены функции открытия и (ниже) закрытия попапов.
+
+  document.addEventListener("keydown", closeByEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+
+  document.removeEventListener("keydown", closeByEscape);
+}
+
+function closeByEscape(event) {
+  if(event.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+
+    closePopup(openedPopup);
+  }
 }
 
 function createCardElement(link, name) {
-
     const cardTemplate = document.querySelector("#card-element").content;
     const cardElement = cardTemplate.querySelector(".element").cloneNode(true); //разобраться с cloneNode дополнительно
     const cardImage = cardElement.querySelector(".element__image");
@@ -86,36 +96,22 @@ function createCardElement(link, name) {
 
     })
 
-    // cardElement.querySelector(".element__image").addEventListener("keydown", (event) => {
-    //   console.log(event.key)
-    //   if(event.key === "Escape") {
-    //     closePopup(imagePopup);
-    //   }
-    // })
-
     return cardElement
-
 }
 
 for (let i = 0; i < initialCards.length; i++) {
-
     cardElements.append(createCardElement(initialCards[i].link, initialCards[i].name));
-
 }
 
 editButton.addEventListener("click", () => {
-
   openPopup(editPopup);
 
   nameInput.value = profileName.textContent; //при открытии попапа инициализируем формы теми, которые введены в профиле
   jobInput.value = profileActivity.textContent; //при открытии попапа инициализируем формы теми, которые введены в профиле
-
 });
 
 addButton.addEventListener("click", () => {
-
   openPopup(addPopup);
-
 });
 
 // document.querySelector(".element__image").addEventListener("keydown", (event) => {
@@ -138,19 +134,16 @@ addButton.addEventListener("click", () => {
 // Текст выше является альтернативой для цикла for ниже...
 
 for(let i = 0; i < closeButtons.length; i++) {
-
   closeButtons[i].addEventListener("click", (event) => {
 
     const popup = event.target.closest(".popup")
     
     closePopup(popup);
-
   });
 
 }
 
 editFormElement.addEventListener('submit', (event) => {
-
     event.preventDefault();
 
     profileName.textContent = nameInput.value;
@@ -158,11 +151,9 @@ editFormElement.addEventListener('submit', (event) => {
     // console.log("Значения сохранены");
 
     closePopup(editPopup);
-
 }); 
 
 addFormElement.addEventListener("submit", (event) => {
-
   event.preventDefault();
 
   cardElements.prepend(createCardElement(imageLinkInput.value, placeNameInput.value));
@@ -170,7 +161,6 @@ addFormElement.addEventListener("submit", (event) => {
   closePopup(addPopup);
   
   event.target.reset();
-  
 })
 
 popups.forEach(element => { // функция для закрытия попапов, при клике в любой области, не являющейся модальным окном
@@ -178,18 +168,7 @@ popups.forEach(element => { // функция для закрытия попап
     // console.log(event.currentTarget)
     // console.log(event.target)
     if(event.target === event.currentTarget) {
-      closePopup(event.target.closest(".popup"));
+      closePopup(element); //была ошибка связанная с неоптимальным поиском попапа
     }
   })
 });
-
-document.addEventListener("keydown", (event) => {
-
-  if(event.key === "Escape") {
-    popups.forEach((element) => {
-      if(element.classList.contains("popup_opened")) {
-        closePopup(element);
-      }
-    })
-  }
-})
