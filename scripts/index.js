@@ -90,13 +90,6 @@ addButton.addEventListener("click", () => {
   openPopup(addPopup);
 });
 
-// document.querySelector(".element__image").addEventListener("keydown", (event) => {
-//   if(event.key === "Escape") {
-//     console.log("a")
-//     closePopup(imagePopup);
-//   }
-// })
-
 // находим все крестики проекта по универсальному селектору
 // const closeButtons = document.querySelectorAll('.popup__close');
 
