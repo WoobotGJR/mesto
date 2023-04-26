@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mesto</title>
+        <script type="module" src="./scripts/index.js"></script>
     </head>
     <body class="body">
         <div class="page">
@@ -22,6 +23,7 @@
                     <button class="profile__add-button" type="button"></button>
                 </section>
                 <section class="elements">
+                    <!-- Начало шаблона карточки -->
                     <template id="card-element">
                         <article class="element">
                             <button class="element__delete-button"></button>
@@ -32,12 +34,13 @@
                             </div>
                         </article>
                     </template>
+                    <!-- Конец шаблона карточки -->
                 </section>
             </main>
             <footer class="footer">
                 <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
             </footer>
-             <div class="popup edit-popup">
+             <div class="popup edit-popup edit">
                 <div class="popup__container popup__container_type_edit">
                      <button class="popup__close-button" type="button"></button>
                      <h2 class="popup__title">Редактировать профиль</h2>
@@ -59,7 +62,7 @@
 						<span class="popup__input-error place-name-input-error"></span>
                         <input class="popup__input popup__input_image-link-text" id="url-input" type="url" placeholder="Ссылка на картинку..." name="image-link" required>
 						<span class="popup__input-error url-input-error"></span>
-                        <button class="popup__submit-button" type="submit">Создать</button>
+                        <button class="popup__submit-button add" type="submit">Создать</button>
                     </form>
                 </div>
             </div>
@@ -71,7 +74,6 @@
                 </div>
             </div>
         </div>
-		<script src="./scripts/index.js"></script>
-        <script src="./scripts/validate.js"></script>
+		<script type="module" src="./scripts/index.js"></script>
     </body>
 </html>
