@@ -1,12 +1,13 @@
 import  {FormValidator} from "./FormValidator.js";  // указывать разрешение имортируемого файла всегда обязательно
 import {Card} from "./Card.js";
+import {initialCards} from "./InitialCards.js";
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const editPopup = document.querySelector(".edit-popup");
-const editPopupForm = editPopup.querySelector(".popup__form");
+const formEditProfile = editPopup.querySelector(".popup__form");
 const addPopup = document.querySelector(".add-popup");
-const addPopupForm = addPopup.querySelector(".popup__form")
+const formAddProfile = addPopup.querySelector(".popup__form")
 const closeButtons = document.querySelectorAll(".popup__close-button");
 const addFormElement = document.querySelector(".popup__container_type_add");
 const editFormElement = document.querySelector(".popup__container_type_edit");
@@ -18,32 +19,6 @@ const imageLinkInput = addFormElement.querySelector(".popup__input_image-link-te
 const profileActivity = document.querySelector(".profile__activity"); 
 const cardElements = document.querySelector(".elements"); 
 const popups = document.querySelectorAll(".popup");
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://images.unsplash.com/photo-1627327719720-d1aa40985232?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://images.unsplash.com/photo-1575738171526-df0217663296?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://images.unsplash.com/photo-1642962036393-91c3839a8b7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://images.unsplash.com/photo-1665073140507-0bad3d962476?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1503&q=80'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://images.unsplash.com/photo-1590160447847-5f3246b25644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=719&q=80'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://images.unsplash.com/photo-1676466920684-5d1aae90c9c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-  }
-];
 
 const settings = {
   formSelector: ".popup__form",
@@ -52,6 +27,12 @@ const settings = {
   inactiveButtonClass: "popup__submit-button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "form__input-error_active"
+}
+
+function createCardElement(link, name, selector) {
+  const newCardElement = new Card(link, name, selector)
+
+  return newCardElement.generateCard()
 }
 
 function openPopup(popup) {
@@ -66,7 +47,7 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-function closeByEscape(event) {
+function closeByEscape(event) { // функция закрытия модальных окон нажатем клавиши Esc
   if(event.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
 
@@ -75,8 +56,7 @@ function closeByEscape(event) {
 }
 
 for (let i = 0; i < initialCards.length; i++) { // заполнение страницы карточками из списка выше
-    const newCard = new Card(initialCards[i].link, initialCards[i].name, "#card-element")
-    cardElements.append(newCard.generateCard());
+  cardElements.append(createCardElement(initialCards[i].link, initialCards[i].name, "#card-element"));
 }
 
 editButton.addEventListener("click", () => {
@@ -125,8 +105,7 @@ editFormElement.addEventListener('submit', (event) => { // слушатель, �
 addFormElement.addEventListener("submit", (event) => { // слушатель, добавляющий карточки на страницу
   event.preventDefault();
 
-  const newCard = new Card(imageLinkInput.value, placeNameInput.value, "#card-element")
-  cardElements.prepend(newCard.generateCard());
+  cardElements.prepend(createCardElement(imageLinkInput.value, placeNameInput.value, "#card-element"));
 
   closePopup(addPopup);
   
@@ -143,8 +122,10 @@ popups.forEach(element => { // функция для закрытия попап
   })
 });
 
-const addFormValidator = new FormValidator(addPopupForm, settings); // добавление валидатора для формы добавления карточек
+const addFormValidator = new FormValidator(formAddProfile, settings); // добавление валидатора для формы добавления карточек
 addFormValidator.enableValidation();
 
-const editFormValidator = new FormValidator(editPopupForm, settings) // добавление валидатора для формы редактирования профиля
+const editFormValidator = new FormValidator(formEditProfile, settings) // добавление валидатора для формы редактирования профиля
 editFormValidator.enableValidation();
+
+export {closeByEscape}
