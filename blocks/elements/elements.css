@@ -1,6 +1,7 @@
 .elements {
     display: grid;
     font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    min-height: 358px; /*базовая высота блока, необходима, чтобы вёрстка выглядела нормально при отсутствии карточек*/
     max-width: calc(100% - 400px);
     margin: 0 auto 66px auto;
     grid-template-columns: repeat(auto-fit, 282px);

@@ -1,5 +1,5 @@
   import { imagePopupImage, imagePopupTextContent, popupImage } from "./Constants.js";
-  import { closeByEscape } from "./index.js";
+  import { openPopup } from "./index.js";
 
   class Card {
     constructor(link, name, templateSelector) {
@@ -32,9 +32,7 @@
       imagePopupImage.alt = this._name;
       imagePopupTextContent.textContent = this._name;
 
-      document.addEventListener("keydown", closeByEscape);
-
-      popupImage.classList.add("popup_opened");
+      openPopup(popupImage);
     }
 
     _setEventListeners() {
