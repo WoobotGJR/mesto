@@ -23,7 +23,7 @@ class Popup {
 
     setEventListeners() {
         // слушатель, позволяющий закрывать модальные окна кнопкой закрытия
-        this._popup.querySelector(".popup__close-button").addEventListener("click", () => {
+        this._popup.querySelector(".popup__close-button").addEventListener("mousedown", () => {
             this.handleClosePopup();
         })
 

@@ -1,12 +1,7 @@
-import {imagePopupImage, imagePopupTextContent} from "./constants.js"
-import { PopupWithImage } from "../components/PopupWithImage.js";
-export {createImagePopup}
+import { Card } from "../components/Card.js"
+export {createCardElement}
 
-const createImagePopup = (link, name) => { // функция для создания и заполнения модального окна с карточками
-    imagePopupImage.src = link;
-    imagePopupImage.alt = name;
-    imagePopupTextContent.textContent = name;
-    const popupWindow = new PopupWithImage({link: link, name: name}, ".image-popup")
-    popupWindow.setEventListeners();
-    popupWindow.handleOpenPopup();
-  }
+function createCardElement(link, name, handleCardClick) {
+  const newCardElement = new Card(link, name, "#card-element", {handleCardClick: handleCardClick});
+  return newCardElement
+}

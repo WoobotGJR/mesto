@@ -17,7 +17,7 @@ class Section {
 
     addItem(element) {
         this._container.prepend(element);
-        this.iterator++;
+        // this.iterator++;
         // console.log(`element ${this.iterator} added`)
     }
 }
