@@ -13,6 +13,8 @@ class PopupWithImage extends Popup {
         this._popup.querySelector(".popup__image-subtitle").textContent = name;
         
         super.handleOpenPopup();
+
+        // console.log("opened")
     }
     
     // setEventListeners унаследован от Popup

@@ -28,7 +28,6 @@ const formAddProfile = new PopupWithForm(".add-popup", { // Функционал
   submitFormCallback: ({name, link}) => {
     const newCard = createCardElement(link, name, () => {
       imagePopup.handleOpenPopup(link, name);
-      imagePopup.setEventListeners();
     })
     cardsContainer.addItem(newCard.generateCard())
   }
@@ -44,14 +43,17 @@ const cardsContainer = new Section({items: initialCards,  // Инициализ�
   renderer: (element) => {  
     const card = createCardElement(element.link, element.name, () => {
       imagePopup.handleOpenPopup(element.link, element.name);
-      imagePopup.setEventListeners();
+      // console.log("opened")
     })
     cardsContainer.addItem(card.generateCard());
-  }}, ".elements")
+  }}, ".elements"
+)
 
 cardsContainer.renderItems(); // обработка начальных изображений
 
 const imagePopup = new PopupWithImage(".image-popup"); // создание модального окна для изображений
+
+imagePopup.setEventListeners(); // объявление слушателей вынесено в глобальную область видимости
 
 const addFormValidator = new FormValidator(formAddProfile.getPopupForm(), settings); // добавление валидатора для формы добавления карточек
 addFormValidator.enableValidation();
