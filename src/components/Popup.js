@@ -3,6 +3,20 @@ export {Popup}
 class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
+        this._popupButton = this._popup.querySelector(".popup__submit-button")
+    }
+
+    saveInitialText() {
+        this._initialText = this._popupButton.textContent
+    }
+
+    renderLoading(isLoading) {
+        if(isLoading) {
+            this._popupButton.textContent = "Сохранение..."
+        }
+        else {
+            this._popupButton.textContent = this._initialText
+        }
     }
 
     handleClosePopup() { // метод, закрывающий модальное окно

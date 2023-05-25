@@ -1,25 +1,23 @@
 export {Section}
 
 class Section {
-    constructor({items, renderer}, containerSelector) {
-        this._items = items;
+    constructor({renderer}, containerSelector) {
+        // this._items = items;
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
-        // this.iterator = 0;
     }
 
-    renderItems() {
-        this._items.forEach(element => {
-            this._renderer(element);
-            // console.log("element rendered")
+    // Из за асинхонности использовать items в качестве принимаемого аргумента не имеет смысла
+
+    renderItems(cards) {
+        cards.forEach(card => {
+            this._renderer(card);
+            // console.log(card) // выводит объект карточки
         });
     }
 
     addItem(element) {
+        // console.log(element);
         this._container.prepend(element);
-        // this.iterator++;
-        // console.log(`element ${this.iterator} added`)
     }
 }
-
-// iterator добавлен для поиска ошибок

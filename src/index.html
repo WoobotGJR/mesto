@@ -13,10 +13,13 @@
             </header>
             <main class="main">
                 <section class="profile">
-                    <img class="profile__avatar" src="<%=require('./images/profile-image.jpg')%>" alt="Фото профиля">
+                    <div class="profile__avatar-container">
+                        <img class="profile__avatar" src="#" alt="Фото профиля">
+                        <button class="profile__avatar-overlay" type="button"></button>
+                    </div>
                     <div class="profile__info-grid">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <p class="profile__activity">Исследователь океана</p>
+                        <h1 class="profile__name"></h1>
+                        <p class="profile__activity"></p>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
                     <button class="profile__add-button" type="button"></button>
@@ -29,7 +32,10 @@
                             <img class="element__image" src="#" alt="Изображение места">
                             <div class="element__bottom-panel">
                                 <h2 class="element__subtitle"></h2>
-                                <button class="element__like-button" type="button"></button>
+                                <div class="element__like-container">
+                                    <button class="element__like-button" type="button"></button>
+                                    <div class="element__like-counter">1</div>
+                                </div>
                             </div>
                         </article>
                     </template>
@@ -70,6 +76,26 @@
                     <img class="popup__image" src="#" alt="Изображение модального окна">
                     <h2 class="popup__image-subtitle"></h2>
                     <button class="popup__close-button"></button>
+                </div>
+            </div>
+            <div class="popup card-delete-popup">
+                <div class="popup__container popup__container_type_delete">
+                    <button class="popup__close-button" type="button"></button>
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <form action="#" class="popup__form" name="delete-popup-form">
+                        <button class="popup__submit-button delete" type="submit">Да</button>
+                    </form>
+                </div>
+            </div>
+            <div class="popup avatar-edit-popup">
+                <div class="popup__container popup__container_type_avatar-edit">
+                    <button class="popup__close-button" type="button"></button>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <form action="" class="popup__form" name="avatar-edit-popup-form">
+                        <input class="popup__input popup__input_type_avatar-link-text" id="avatar-link-input" type="url" placeholder="Ссылка на картинку..." name="avatar" required>
+                        <span class="popup__input-error avatar-link-input-error"></span>
+                        <button class="popup__submit-button avatar-edit" type="submit">Сохранить</button>
+                    </form>
                 </div>
             </div>
         </div>
