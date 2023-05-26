@@ -67,15 +67,6 @@ class Api {
         .then(res => {return this._checkResponseStatus(res)})
     }
 
-    // getLikesNumber() {
-    //     return fetch(this._baseUrl + "/cards", {
-    //         headers: this.headers,
-    //         method: "GET"
-    //     })
-    //     .then(res => {return this._checkResponseStatus(res)})
-    //     .then(res => {return res.likes.length})
-    // }
-
     deleteUserCard(cardId) {
         return fetch(this._baseUrl + `/cards/${cardId}`, {
             headers: this.headers,

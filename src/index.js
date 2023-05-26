@@ -61,7 +61,7 @@ function createCardElement(cardResponse) {
           popupDeletetionCardConfirm.saveInitialText();
           popupDeletetionCardConfirm.renderLoading(true)
           api.deleteUserCard(cardId)
-           .then(res => {
+           .then(() => {
             newCardElement.handleDeleteCard();
             popupDeletetionCardConfirm.handleClosePopup();
           })
@@ -77,63 +77,56 @@ function createCardElement(cardResponse) {
   return newCardElement.generateCard();
 } 
 
-// Инициализация начальных данных о профиле пользователя
-api.getUserInfo()
-  .then(userInitialInfo => {
-    // console.log(userInitialInfo);
+// Обработчик карточек
+const cardsList = new Section({
+  renderer: (cards) => {
+    // console.log(card); // выводит объект карточки
+    cardsList.addItem(createCardElement(cards));
+}}, ".elements"
+)
 
+// Карточки должны отрисовываться только после получения id пользователя, 
+// т.к. это требуется для отображения кнопки удаления т.к. должен использоваться 
+// Promise.all или в крайнем случае вложенный запрос
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userInitialInfo]) => {
+    // Заполнение страницы начальными карточками
+    cardsList.renderItems(initialCards);
+
+    // Инициализация начальных данных о профиле пользователя
     newUser.setUserInfo(userInitialInfo.name, userInitialInfo.about);
     newUser.setUserAvatar(userInitialInfo.avatar);
     userId = userInitialInfo._id;
   })
   .catch(err => {
-    console.log(`Initial user data error - ${err}`)
+    console.log(`Initial info loading error - ${err}`);
   })
-;
-
-// Обработчик начальных карточек
-const renderInitialCards = new Section({
-  renderer: (cards) => {
-    // console.log(card); // выводит объект карточки
-    renderInitialCards.addItem(createCardElement(cards));
-}}, ".elements"
-)
-
-// Заполнение страницы начальными карточками
-api.getInitialCards()
-  .then(initialCards => {
-    // console.log(initialCards);
-
-    renderInitialCards.renderItems(initialCards);
-  })
-  .catch(err => {
-    console.log(`Initial cards error - ${err}`);
-  })
-;
 
 // Функционал и создание модального окна для добавления карточек
-const formAddProfile = new PopupWithForm(".add-popup", {
+const formAddCard = new PopupWithForm(".add-popup", {
   submitFormCallback: ({name, link}) => {
-    formAddProfile.saveInitialText();
-    formAddProfile.renderLoading(true)
+    formAddCard.saveInitialText();
+    formAddCard.renderLoading(true)
     api.addUserCard({link: link, name: name})
       .then(res => {
         // console.log(`response - ${res}`);
-        renderInitialCards.addItem(createCardElement(res));
+        cardsList.addItem(createCardElement(res));
+        // Попап не должен закрываться если возникнет серверная ошибка, поэтому функционал закрытия следует поместить в блок then соответствующей цепочки промиcов
+        formAddCard.handleClosePopup();
       })
       .catch(err => {
         console.log(`Card adding error: ${err}`)
       })
-      .finally(() => {formAddProfile.renderLoading(false)})
+      .finally(() => {formAddCard.renderLoading(false)})
   }
 })
 
 // слушатели для формы добавления
-formAddProfile.setEventListeners();
+formAddCard.setEventListeners();
 
 // слушатель для открытия модального окна при нажатии на кнопку
 popupProfileAddButton.addEventListener("click", () => {
-  formAddProfile.handleOpenPopup();
+  formAddCard.handleOpenPopup();
 })
 
 // функционал сабмита модального окна редактирования
@@ -144,6 +137,8 @@ const formEditProfile = new PopupWithForm(".edit-popup", {
     api.setUserInfo({username: name, userInfo: activity})
       .then(res => {
         newUser.setUserInfo(res.name, res.about);
+        //Попап не должен закрываться если возникнет серверная ошибка, поэтому функционал закрытия следует поместить в блок then соответствующей цепочки промиcов
+        formEditProfile.handleClosePopup();
       })
       .catch(err => {
         console.log(`Editing name and about error - ${err}`)})
@@ -165,12 +160,19 @@ popupProfileEditButton.addEventListener("click", () => {
 // Объявление и функционал для модального окна с редактированием аватара пользователя
 const formAvatarEditProfile = new PopupWithForm(".avatar-edit-popup", {
   submitFormCallback: ({avatar}) => {
+    formAvatarEditProfile.saveInitialText();
+    formAvatarEditProfile.renderLoading(true);
     api.setUserAvatar({avatar: avatar})
       .then(res => {
-        newUser.setUserAvatar(res.avatar)
+        newUser.setUserAvatar(res.avatar);
+        //Попап не должен закрываться если возникнет серверная ошибка, поэтому функционал закрытия следует поместить в блок then соответствующей цепочки промиcов
+        formAvatarEditProfile.handleClosePopup();
       })
       .catch(err => {
         console.log(`Set Avatar Error - ${err}`)
+      })
+      .finally(() => {
+        formAvatarEditProfile.renderLoading(false);
       })
   }
 });
@@ -189,7 +191,7 @@ const popupDeletetionCardConfirm = new PopupWithConfirmation(".card-delete-popup
 popupDeletetionCardConfirm.setEventListeners();
 
 // добавление валидатора для формы добавления карточек
-const addFormValidator = new FormValidator(formAddProfile.getPopupForm(), settings);
+const addFormValidator = new FormValidator(formAddCard.getPopupForm(), settings);
 addFormValidator.enableValidation();
 
 // добавление валидатора для формы редактирования профиля

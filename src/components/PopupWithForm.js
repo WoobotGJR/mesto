@@ -10,6 +10,20 @@ class PopupWithForm extends Popup {
         // this.iterator = 0;
     }
 
+    // Функции saveInitialText и renderLoading перемещены из Popup, чтобы их не наследовал PopupWithImage
+    saveInitialText() {
+        this._initialText = this._popupButton.textContent
+    }
+
+    renderLoading(isLoading) {
+        if(isLoading) {
+            this._popupButton.textContent = "Сохранение..."
+        }
+        else {
+            this._popupButton.textContent = this._initialText;
+        }
+    }
+
     _getInputValues() {
         const inputValues = {};
 
@@ -31,7 +45,8 @@ class PopupWithForm extends Popup {
             event.preventDefault();
             
             this._submitCallback(this._getInputValues());
-            this.handleClosePopup();
+            // Попап не должен закрываться если возникнет серверная ошибка, поэтому функционал закрытия следует поместить в блок then соответствующей цепочки промиcов
+            // this.handleClosePopup();
         })
 
         super.setEventListeners();

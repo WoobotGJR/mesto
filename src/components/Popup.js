@@ -6,19 +6,6 @@ class Popup {
         this._popupButton = this._popup.querySelector(".popup__submit-button")
     }
 
-    saveInitialText() {
-        this._initialText = this._popupButton.textContent
-    }
-
-    renderLoading(isLoading) {
-        if(isLoading) {
-            this._popupButton.textContent = "Сохранение..."
-        }
-        else {
-            this._popupButton.textContent = this._initialText
-        }
-    }
-
     handleClosePopup() { // метод, закрывающий модальное окно
         this._popup.classList.remove("popup_opened");
         document.removeEventListener("keydown", this._handleEscClose)

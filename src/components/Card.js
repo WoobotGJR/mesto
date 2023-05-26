@@ -80,6 +80,7 @@
       // Если айди автора карточки, не совпадает с айди пользователя, удалять DOM узел, отвечающий за кнопку удаления карточки
       if(this._userId === this._cardOwner._id) {
         this._element.querySelector(".element__delete-button").addEventListener("click", () => {
+          
           this._cardDeleteFunction(this._cardId);
         })
       }
@@ -93,9 +94,10 @@
 
       this._likeButton = this._element.querySelector(".element__like-button");
       this._likeButtonCounter = this._element.querySelector(".element__like-counter");
+      this._cardImage = this._element.querySelector(".element__image")
   
-      this._element.querySelector(".element__image").src = this._link;
-      this._element.querySelector(".element__image").alt = this._name;
+      this._cardImage.src = this._link;
+      this._cardImage.alt = this._name;
       this._element.querySelector(".element__subtitle").textContent = this._name;
 
       this.refreshCardLikes();

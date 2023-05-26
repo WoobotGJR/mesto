@@ -10,7 +10,8 @@ class Section {
     // Из за асинхонности использовать items в качестве принимаемого аргумента не имеет смысла
 
     renderItems(cards) {
-        cards.forEach(card => {
+        // массив карточек реверсируется
+        cards.reverse().forEach(card => {
             this._renderer(card);
             // console.log(card) // выводит объект карточки
         });
